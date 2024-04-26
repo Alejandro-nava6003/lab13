@@ -163,35 +163,23 @@ public class FamilyTree
 	}
 	
 	
-	// Returns the "deepest" node that is an ancestor of the node named name1, and also is an
-	// ancestor of the node named name2.
-	//
-	// "Depth" of a node is the "distance" between that node and the root. The depth of the root is 0. The
-	// depth of the root's immediate children is 1, and so on.
-	//
-	TreeNode getMostRecentCommonAncestor(String name1, String name2) throws TreeException
-	{
-		// Get nodes for input names.
-		TreeNode node1 = root.???		// node whose name is name1
-		if (node1 == null)
-			??? Throw a TreeException with a useful message
-		TreeNode node2 = root.???		// node whose name is name2
-		if (node2 == null)
-			??? Throw TreeException with a useful message
-		
-		// Get ancestors of node1 and node2.
-		ArrayList<TreeNode> ancestorsOf1 = ???
-		ArrayList<TreeNode> ancestorsOf2 = ???
-		
-		// Check members of ancestorsOf1 in order until you find a node that is also
-		// an ancestor of 2. 
-		for (TreeNode n1: ancestorsOf1)
-			if (ancestorsOf2.contains(n1))
-				return n1;
-		
-		// No common ancestor.
-		return null;
-	}
+	TreeNode getMostRecentCommonAncestor(String name1, String name2) throws TreeException {
+        TreeNode node1 = root.getNodeWithName(name1);
+        if (node1 == null)
+            throw new TreeException("Node not found: " + name1);
+        TreeNode node2 = root.getNodeWithName(name2);
+        if (node2 == null)
+            throw new TreeException("Node not found: " + name2);
+
+        ArrayList<TreeNode> ancestorsOf1 = node1.collectAncestorsToList();
+        ArrayList<TreeNode> ancestorsOf2 = node2.collectAncestorsToList();
+
+        for (TreeNode n1 : ancestorsOf1) {
+            if (ancestorsOf2.contains(n1))
+                return n1;
+        }
+        return null;
+    }
 	
 	
 	public String toString()
