@@ -118,13 +118,13 @@ public class FamilyTree
 
 		// Parse the input file. Create a FileReader that reads treeFile. Create a BufferedReader
 		// that reads from the FileReader.
-		FileReader fr = ???
-		BufferedReader br = ???
-		String line;
-		while ((line = br.readLine()) != null)
-			addLine(line);
-		br.close();
-		fr.close();
+		FileReader fr = new FileReader(treeFile);
+        BufferedReader br = new BufferedReader(fr);
+        String line;
+        while ((line = br.readLine()) != null)
+            addLine(line);
+        br.close();
+        fr.close();
 	}
 	
 	
